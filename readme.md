@@ -1,19 +1,5 @@
 # Knot a Film
 
-*We love maps with lines and dots,*<br>
-*X marks places, paths, and spots.*<br>
-*But scrolling movies? No fun at all—*<br>
-*Just endless choices in one long crawl.*<br>
-*What if movies had a map?*<br>
-*Pick a path, tap, tap tap!*<br>
-
-*My map special, I decree.*<br>
-*Need not worry, you will see.*<br>
-*Every mind’s a garden bright,*<br>
-*tended gently, growing right.*<br>
-*See the shape and you will find*<br>
-*a little mirror of your mind.*<br>
-
 Knot a Film is an application for visualizing the rotten tomatoes movie dataset more like a map. The project is migrating from traditional SwiftUI to a metal graphics pipeline
 
 <p align="center">

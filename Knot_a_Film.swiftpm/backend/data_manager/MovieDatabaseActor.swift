@@ -74,9 +74,9 @@ public final actor MovieDatabaseActor {
         
         let moviePeopleFetch = FetchDescriptor<MoviePerson>(
             predicate: #Predicate {
-                $0.directedMovies.contains(where: { $0.dateWatched != nil }) ||
-                $0.actedMovies.contains(where: { $0.dateWatched != nil }) ||
-                $0.writtenMovies.contains(where: { $0.dateWatched != nil })
+                $0.directedMovies.contains(where: { $0.dateWatched == nil }) ||
+                $0.actedMovies.contains(where: { $0.dateWatched == nil }) ||
+                $0.writtenMovies.contains(where: { $0.dateWatched == nil })
             }
         )
         
@@ -89,7 +89,6 @@ public final actor MovieDatabaseActor {
 
         return (movies, moviePeople)
         
-                
     }
     
     public func fetchAndPrepareMoviePeople(_ fetchDescription: FetchDescriptor<MoviePerson>) async throws -> [MoviePersonDTO] {

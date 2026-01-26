@@ -220,7 +220,8 @@ public final class GraphRenderer : NSObject, MTKViewDelegate {
         encoder.setBuffer(self.bodyData.initialIdxBuffer, offset: 0, index: Int(BODY_INITIAL_IDX_IDX))
         encoder.setBytes(&params.physics, length: MemoryLayout<PhysicsParams>.stride, index: Int(PHYSICS_PARAMS_IDX))
         
-        let gridSize = MTLSize(width: Int(params.numBodies), height: 1, depth: 1)
+        let size = ceil(Float(params.numBodies) / 32)
+        let gridSize : MTLSize = MTLSize(width: Int(size), height: 1, depth: 1)
 
         encoder.dispatchThreadgroups(gridSize, threadsPerThreadgroup: threadgroupSize)
         
@@ -240,7 +241,8 @@ public final class GraphRenderer : NSObject, MTKViewDelegate {
         encoder.setBuffer(self.nodeData.isLeafBuffer, offset: 0, index: Int(NODE_IS_LEAF_IDX))
         encoder.setBuffer(self.mutexBuffer, offset: 0, index: Int(MUTEX_IDX))
         
-        let gridSize = MTLSize(width: Int(params.numNodes), height: 1, depth: 1)
+        let size = ceil(Float(params.numNodes) / 32)
+        let gridSize : MTLSize = MTLSize(width: Int(size), height: 1, depth: 1)
 
         encoder.dispatchThreadgroups(gridSize, threadsPerThreadgroup: threadgroupSize)
         encoder.endEncoding()
@@ -351,7 +353,8 @@ public final class GraphRenderer : NSObject, MTKViewDelegate {
         encoder.setBuffer(self.edgesData.edgeTerminationsBuffer, offset: 0, index: Int(EDGE_TERMINATIONS_IDX))
         encoder.setBuffer(self.edgesData.edgeAnglesBuffer, offset: 0, index: Int(EDGE_ANGLES_IDX))
 
-        let gridSize = MTLSize(width: Int(params.numBodies), height: 1, depth: 1)
+        let size = ceil(Float(params.numBodies) / 32)
+        let gridSize : MTLSize = MTLSize(width: Int(size), height: 1, depth: 1)
 
         encoder.dispatchThreadgroups(gridSize, threadsPerThreadgroup: threadgroupSize)
         encoder.endEncoding()
@@ -367,7 +370,8 @@ public final class GraphRenderer : NSObject, MTKViewDelegate {
         encoder.setBuffer(self.edgesData.edgeTerminationsBuffer, offset: 0, index: Int(EDGE_TERMINATIONS_IDX))
         encoder.setBuffer(self.edgesData.edgeTerminationsSortedBuffer, offset: 0, index: Int(EDGE_TERMINATIONS_SORTED_IDX))
 
-        let gridSize = MTLSize(width: Int(params.numBodies), height: 1, depth: 1)
+        let size = ceil(Float(params.numBodies) / 32)
+        let gridSize : MTLSize = MTLSize(width: Int(size), height: 1, depth: 1)
 
         encoder.dispatchThreadgroups(gridSize, threadsPerThreadgroup: threadgroupSize)
         encoder.endEncoding()
